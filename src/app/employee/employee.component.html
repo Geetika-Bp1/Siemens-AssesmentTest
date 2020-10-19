@@ -2,7 +2,7 @@
     <ng-template pTemplate="caption">
         <p>Employee List</p>
         <div>
-            <button pButton type="text" type="button" id="" (click)="addEmployee()">Add Employee</button> 
+            <button class="test-right" pButton type="text" type="button" id="" (click)="addEmployee()">Add Employee</button> 
         </div>
       </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -16,21 +16,6 @@
         <tr> 
             <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
-            </td>
-            <td>
-                <span class="pi pi-check" style="font-size: 3em"></span>
-                <div class="p-d-flex">
-                   <span class="pi pi-check" style="font-size: 3em"></span>
-                   <button pButton type="text" type="button" id="click" (click)="editEmployee($event)"></button>
-                    <!-- <button pb ng-click="fav($index)"><span class="glyphicon glyphicon-star"></span></button>
-                    <button type="button" class="btn" ng-click="check($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
-                    <button type="button" class="btn" ng-click="del($index)"><span class="glyphicon glyphicon-remove"></span></button> -->
-                  </div>
-                  <!-- <div class="p-d-flex" ng-show="row == $index">
-                    <button type="button" class="btn" ng-click="fav($index)"><span class="glyphicon glyphicon-star"></span></button>
-                    <button type="button" class="btn" ng-click="check($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
-                    <button type="button" class="btn" ng-click="del($index)"><span class="glyphicon glyphicon-remove"></span></button>
-                  </div> -->
             </td>
         </tr>
     </ng-template>
