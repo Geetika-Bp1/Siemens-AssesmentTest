@@ -1,0 +1,45 @@
+ [ {
+        "Id": 1,
+        "DepartmentName" : "Marketing",
+        "MarkAlias" : "",
+        "AddedBy" : "Admin1",
+        "AddedTime" : "10/10/2020",
+        "ModifiedBy" : "Admin1",
+        "ModifiedTime" : "10/10/2020",
+        "DepartmentLead" : 1,
+        "ParentDepartment": 0
+      }, 
+      {
+        "Id": 2,
+        "DepartmentName" : "Sales",
+        "MarkAlias" : "",
+        "AddedBy" : "Admin2",
+        "AddedTime" : "10/10/2020",
+        "ModifiedBy" : "Admin2",
+        "ModifiedTime" : "10/10/2020",
+        "DepartmentLead" : 2,
+        "ParentDepartment": 0
+      },
+      {
+        "Id": 3,
+        "DepartmentName" : "IT",
+        "MarkAlias" : "",
+        "AddedBy" : "Admin3",
+        "AddedTime" : "10/10/2020",
+        "ModifiedBy" : "Admin3",
+        "ModifiedTime" : "10/10/2020",
+        "DepartmentLead" : 3,
+        "ParentDepartment": 1
+      },
+      {
+        "Id": 4,
+        "DepartmentName" : "HR",
+        "MarkAlias" : "",
+        "AddedBy" : "Admin1",
+        "AddedTime" : "10/10/2020",
+        "ModifiedBy" : "Admin1",
+        "ModifiedTime" : "10/10/2020",
+        "DepartmentLead" : 4,
+        "ParentDepartment": 2
+      }
+    ]

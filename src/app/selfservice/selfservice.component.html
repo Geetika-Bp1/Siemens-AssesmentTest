@@ -1,0 +1,38 @@
+<div style="margin-top: 50px;">
+<p-card header="About me"  [style]="{width: '360px'}" styleClass="ui-card-shadow">
+    <!-- <p-header>
+        <img src="Card" src="assets/showcase/images/usercard.png"> 
+    </p-header> -->
+    <div>
+      <!--  <div> <button  pButton type="button" style="margin-right:10px;" icon="pi pi-user-edit" class="ui-button-info" (click)="editAboutMe()"></button></div> -->
+        <div>
+            <label for='department'><span class="pi pi-sitemap"></span></label>
+            <label id="department"  style="margin-left: 50px;">{{employee.Id}}</label>
+        </div>
+        <div>
+            <label for='title'><span class="pi pi-eye"></span></label>
+            <label id="title"  style="margin-left: 50px;">{{employee.Title}}</label>
+        </div>
+    </div>
+</p-card>
+</div>
+<div style="margin-top: 50px;">
+    <p-card header="Skill Set"  [style]="{width: '360px'}" styleClass="ui-card-shadow">
+        <!-- <p-header>
+            <img src="Card" src="assets/showcase/images/usercard.png">
+        </p-header> -->
+        <div>
+           <div style="margin-left: 80%;"> <button  pButton type="button" style="margin-right:10px;" icon="pi pi-user-edit" class="ui-button-info" (click)="editskill()"></button></div>
+            <div>
+                <label for='skillName'>Skill Name</label>
+                <label id="skillName"  style="margin-left: 50px;">{{employee.skills.skillName}}</label>
+                <input id="skillName" *ngIf="editskillset" type="text" class="form-control"  [(ngModel)]="employee.skills.skillName" required [ngClass]="{ 'is-invalid': f.skillName.touched && f.skillName.errors }"/> 
+            </div>
+            <div>
+                <label for='experience'>Experience in years</label> 
+                <label id="experience"  style="margin-left: 50px;">{{employee.skills.experienceInYears}}</label>
+                <input id="skillName" *ngIf="editskillset" type="text" class="form-control"  [(ngModel)]="employee.skills.experienceInYears" required [ngClass]="{ 'is-invalid': f.experienceInYears.touched && f.experienceInYears.errors }"/> 
+            </div>
+        </div>
+    </p-card>
+    </div>

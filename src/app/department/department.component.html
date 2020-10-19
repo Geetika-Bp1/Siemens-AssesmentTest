@@ -1,0 +1,119 @@
+<div style="margin-top:100px">
+<div *ngIf="showcondition">
+    <h1>Department Details<hr/>
+    </h1>
+<form [formGroup]="departmentForm" (ngSubmit)="addUpdateDepartment()">
+    <div class="form-group" *ngIf='editDept'>
+        <label for="ID">ID</label> <br/>
+        <!-- <label id='ID'formControlName="Id"></label> -->
+        <input id="ID"  type="text" class ="form-control" formControlName="Id"/> 
+    </div>
+    <div class="form-group">
+        <label for="name">DepartmentName</label> 
+        <input id="name"  type="text" class ="form-control" formControlName="departmentName"  required [ngClass]="{ 'is-invalid': f.departmentName.touched && f.departmentName.errors }"/> 
+        <div [hidden]="f.departmentName.valid || f.departmentName.untouched" class="invalid-feedback">
+            Department Name  is required.
+       </div>
+    </div>
+    <div class="form-group">
+        <label for="markAlias">MarkAlias</label> 
+        <input id="markAlias" type="text"  class ="form-control" formControlName="markAlias"/> 
+    </div>
+    <div class="form-group">
+        <label for="added">Added By</label> <br/>
+        <input id="added" type="text" class="form-control"  formControlName="addedBy" required [ngClass]="{ 'is-invalid': f.addedBy.touched && f.addedBy.errors }"/> 
+        <div [hidden]="f.addedBy.valid || f.addedBy.untouched" class="invalid-feedback">
+            Addedby   is required.
+       </div> 
+    </div>
+    <div class="form-group">
+        <label for="addedTime">Added Time</label> <br/>
+        <input id="addedTime" type="text" class="form-control" formControlName="addedTime" />
+    </div> 
+    <div class="form-group">
+        <label for="modifiedBy">Modified By</label> <br/>
+        <input id="modifiedBy"  type="text" class="form-control" formControlName="modifiedBy" > 
+    </div>
+    <div class="form-group">
+        <label for="modifiedTime">Modified Time</label> <br/>
+        <input id="modifiedTime"  type="text"  class="form-control" formControlName="modifiedTime" > 
+    </div>
+    <div>
+        <label for="deptlead">Department Lead</label>
+        <select id="deptlead"  formControlName="departmentLead" class="form-control">
+            <option  value="">Select lead</option>
+                <option #leadName *ngFor="let lead of leads" [ngValue]="lead.Id" >{{lead.Name}} 
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="parentdept">Parent Department</label>
+        <select  formControlName="parentDepartment" class="form-control">
+            <option id="parentdept" value="">Select Parent Department</option>
+                <option *ngFor="let parent of Parents" [ngValue]="parent.Id" >{{parent.Name}}
+            </option>
+         </select>
+    </div>
+    <div class="form-group">
+        <button *ngIf="!editDept" [disabled] ="loading || !departmentForm.valid" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <button *ngIf='editDept' [disabled] ="loading || !departmentForm.valid" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Update
+        </button>
+    </div>   
+</form>
+</div>
+<div *ngIf="!showcondition">
+<p-table [columns]="cols" [value]="departments" [paginator]="true" [rows]="5">
+    <ng-template pTemplate="caption">
+        <p>Department List</p>
+        <div class="text-right">
+            <button  type="text" type="button" id="showadddepartment" (click)="showadddepartment()" value="AddDepartment">AddDepartment</button> 
+        </div>
+      </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns"> 
+                <div *ngIf="(col.header == 'Lead' || col.header == 'ParentDepartment'); else other">
+                <p-cellEditor>
+                  <ng-template pTemplate="output">
+                   {{getMappingName(rowData[col.field],col.header)}}
+                  </ng-template>
+                </p-cellEditor>
+              </div>
+              <ng-template #other>
+                {{rowData[col.field]}}
+              </ng-template>
+            </td>
+            <td>
+                <div class="p-d-flex">
+                    <button  pButton type="button"  icon="pi pi-pencil" class="ui-button-info" (click)="editDepartment(rowData)"></button>
+                    <button  pButton type="button" style="margin-right:10px;" icon="pi pi-times" class="ui-button-info" (click)="deleteDepartment(rowData.Id)"></button>
+                   
+                    <!-- <span class="pi pi-check" style="font-size: 3em"></span>
+                   <button pButton type="text" type="button" id="click" (click)="editDepartment(rowData)">Edit</button>
+                   <button pButton type="text" type="button" id="click" (click)="deleteDepartment(rowData[Id])">Delete</button> -->
+                    <!-- <button pb ng-click="fav($index)"><span class="glyphicon glyphicon-star"></span></button>
+                    <button type="button" class="btn" ng-click="check($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <button type="button" class="btn" ng-click="del($index)"><span class="glyphicon glyphicon-remove"></span></button> -->
+                  </div>
+                  <!-- <div class="p-d-flex" ng-show="row == $index">
+                    <button type="button" class="btn" ng-click="fav($index)"><span class="glyphicon glyphicon-star"></span></button>
+                    <button type="button" class="btn" ng-click="check($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <button type="button" class="btn" ng-click="del($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                  </div> -->
+              </td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>
